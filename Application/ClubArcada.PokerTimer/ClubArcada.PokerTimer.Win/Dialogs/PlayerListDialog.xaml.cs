@@ -60,7 +60,8 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
 
             var result = PlayerList.SingleOrDefault(p => p.TournamentResultId == id);
 
-            result.ReBuyCount++;
+            var dlg = new Dialogs.ReBuyDlg(result);
+            dlg.ShowDialog();
         }
 
         private void btnAddOnDown(object sender, RoutedEventArgs e)

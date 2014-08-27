@@ -65,8 +65,8 @@
         <TextBox Text="{Binding TotalStack, Mode=OneWay}" Grid.Column="4" Grid.Row="6" Margin="0,3,0,3" IsEnabled="False" />
 
         <StackPanel Grid.Row="9" Grid.ColumnSpan="5" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Style="{StaticResource LightButtonStyle}" Content="Zavrieť" Click="btnClose_Click"></Button>
-            <Button Style="{StaticResource LightButtonStyle}" Content="Pridať" Margin="10,0,0,0" Click="btnOk_Click"></Button>
+            <Button Style="{StaticResource LightButtonStyle}" Content="Zavrieť" Margin="0,0,0,2" Click="btnClose_Click"></Button>
+            <Button Style="{StaticResource LightButtonStyle}" Content="Pridať" Margin="10,0,0,2" Click="btnOk_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -72,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\ReBuyDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\SelectStructureDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +109,9 @@
     </Compile>
     <Compile Include="Dialogs\PlayerListDialog.xaml.cs">
       <DependentUpon>PlayerListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReBuyDlg.xaml.cs">
+      <DependentUpon>ReBuyDlg.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelectStructureDlg.xaml.cs">
       <DependentUpon>SelectStructureDlg.xaml</DependentUpon>
