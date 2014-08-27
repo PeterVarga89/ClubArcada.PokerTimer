@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="PSDB">
+  <DataContextMoniker Name="/PSDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="af94f550-6938-40b8-b32a-5d5c056dbc6b" absoluteBounds="0.5, 0.5, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/PSDBDataContext/Tournament" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d41ca880-6775-4dc6-a5d1-fcd4aec7fe08" absoluteBounds="0.515, 0.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a52b7c5c-589c-44dc-ba6a-056c535774fa" absoluteBounds="2.75, 0.5, 2, 4.2708154296875">
+      <DataClassMoniker Name="/PSDBDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3aa9096c-50f1-464e-aa38-bc85be63fd96" absoluteBounds="2.765, 0.96, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8d300da5-7d94-4400-8ddc-7bdd97100b0a" absoluteBounds="7.25, 0.5, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/PSDBDataContext/TournamentDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a191a177-4974-436e-ad05-47b248839b04" absoluteBounds="7.2650000000000006, 0.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="76dd9753-7fe4-4e1f-9fe7-299de5f41ad7" absoluteBounds="0.5, 5.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/PSDBDataContext/Structure" />
+      <nestedChildShapes>
+        <elementListCompartment Id="affbaa74-886f-47a7-a849-9ad38bf8dde6" absoluteBounds="0.51500000000000012, 5.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d2a338cc-8ba0-41ab-bad1-9984a2aa50dd" absoluteBounds="2.625, 5.125, 2, 2.5401025390625">
+      <DataClassMoniker Name="/PSDBDataContext/StructureDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99cf40ff-108b-45ce-a248-a6ce0dadcfe1" absoluteBounds="2.6399999999999997, 5.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="07b068a1-42f9-4096-b64d-fcad6fb198c4" absoluteBounds="5, 0.5, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/PSDBDataContext/TournamentResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ae829c4c-5faa-46ab-8ab2-c6f75cf748b1" absoluteBounds="5.015, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

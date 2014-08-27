@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubArcada.PokerTimer.Win", "ClubArcada.PokerTimer.Win\ClubArcada.PokerTimer.Win.csproj", "{03D0C812-9146-406B-A2C8-F53C3ECFF38D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubArcada.BusinessObjects", "ClubArcada.BusinessObjects\ClubArcada.BusinessObjects.csproj", "{9BF52ECB-EE95-4173-87C4-A02FA7B34FFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03D0C812-9146-406B-A2C8-F53C3ECFF38D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D0C812-9146-406B-A2C8-F53C3ECFF38D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D0C812-9146-406B-A2C8-F53C3ECFF38D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D0C812-9146-406B-A2C8-F53C3ECFF38D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF52ECB-EE95-4173-87C4-A02FA7B34FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF52ECB-EE95-4173-87C4-A02FA7B34FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF52ECB-EE95-4173-87C4-A02FA7B34FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF52ECB-EE95-4173-87C4-A02FA7B34FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
