@@ -224,5 +224,15 @@ namespace ClubArcada.BusinessObjects
 
             return newObj;
         }
+
+        public static int GetRounded(this int val)
+        {
+            return val - (val % 5);
+        }
+
+        public static Double GetRounded(this Double val)
+        {
+            return Math.Round(val - (val % 5),0);
+        }
     }
 }

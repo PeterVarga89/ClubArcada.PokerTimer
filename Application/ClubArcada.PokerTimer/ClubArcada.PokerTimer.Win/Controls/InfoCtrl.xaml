@@ -19,7 +19,10 @@
                 </Viewbox>
 
                 <Viewbox Grid.Row="1" Margin="2">
-                    <TextBlock Name="txtValue" Margin="0" Padding="0" Foreground="Yellow" Text="{Binding Message, Mode=TwoWay}"></TextBlock>
+                    <Grid>
+                        <TextBlock Visibility="{Binding IsCurrency, Converter={StaticResource BoolToVisibilityConverter}}" Margin="0" Padding="0" Foreground="Yellow" Text="{Binding Message, Mode=TwoWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}"></TextBlock>
+                        <TextBlock Visibility="{Binding IsCurrency, Converter={StaticResource BoolToReverzeVisibilityConverter}}" Margin="0" Padding="0" Foreground="Yellow" Text="{Binding Message, Mode=TwoWay}"></TextBlock>
+                    </Grid>
                 </Viewbox>
 
             </Grid>

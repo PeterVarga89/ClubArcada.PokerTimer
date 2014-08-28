@@ -37,6 +37,17 @@ namespace ClubArcada.BusinessObjects
         [Description("Chips Total")]
         ChipsTotal,
 
+        [Description("Moneypool")]
+        MoneyPool,
+
+        [Description("Prizepool")]
+        PrizePool,
+
+        [Description("Liga")]
+        League,
+
+        [Description("Rake")]
+        Rake,
     }
 
     public enum eEnvironment

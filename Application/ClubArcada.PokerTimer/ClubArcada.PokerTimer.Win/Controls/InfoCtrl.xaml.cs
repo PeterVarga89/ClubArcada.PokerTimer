@@ -44,6 +44,8 @@ namespace ClubArcada.PokerTimer.Win.Controls
 
         }
 
+        public bool IsCurrency { get; set; }
+
         private static void TypePropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             InfoCtrl uc1 = (InfoCtrl)dependencyObject;

@@ -58,7 +58,7 @@
                     </Grid.RowDefinitions>
 
                     <!--LEVEL-->
-                    <Controls:InfoCtrl Type="Level"  Message="{Binding CurrentLevel, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="0" />
+                    <Controls:InfoCtrl Type="Level" IsCurrency="False" Message="{Binding CurrentLevel, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="0" />
 
                     <!--PlayerCountTotal-->
                     <Controls:InfoCtrl Type="PlayerCountTotal" Message="{Binding PlayerCount, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="1" />
@@ -97,10 +97,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Border Margin="0,0,0,10" Grid.Row="0" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
-                    <Border Margin="0,0,0,10" Grid.Row="1" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
-                    <Border Margin="0,0,0,10" Grid.Row="2" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
-                    <Border Margin="0,0,0,10" Grid.Row="3" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
+                    <!--MONEY POOL-->
+                    <Controls:InfoCtrl IsCurrency="True" Type="MoneyPool" Message="{Binding MoneyPool, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="0" />
+
+                    <!--PRIZE POOL-->
+                    <Controls:InfoCtrl IsCurrency="True" Type="PrizePool" Message="{Binding PrizePool, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="1" />
+
+                    <!--League-->
+                    <Controls:InfoCtrl IsCurrency="True" Type="League" Message="{Binding LeagueMoney, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="2" />
+
+                    <!--League-->
+                    <Controls:InfoCtrl IsCurrency="True" Type="Rake" Message="{Binding RakeMoney, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="3" />
+                    
                     <Border Margin="0,0,0,10" Grid.Row="4" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
                     <Border Margin="0,0,0,10" Grid.Row="5" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
                     <Border Margin="0,0,0,10" Grid.Row="6" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>

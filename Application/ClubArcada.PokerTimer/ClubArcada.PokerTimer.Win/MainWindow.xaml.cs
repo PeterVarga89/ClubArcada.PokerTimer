@@ -34,7 +34,11 @@ namespace ClubArcada.PokerTimer.Win
             IsDark,
             ChipsTotal,
             ReBuyCount,
-            AddOnCount
+            AddOnCount,
+            MoneyPool,
+            PrizePool,
+            RakeMoney,
+            LeagueMoney
         }
 
         private void RefreshValues()
@@ -45,6 +49,10 @@ namespace ClubArcada.PokerTimer.Win
             PropertyChange(Property.ChipsTotal);
             PropertyChange(Property.ReBuyCount);
             PropertyChange(Property.AddOnCount);
+            PropertyChange(Property.MoneyPool);
+            PropertyChange(Property.PrizePool);
+            PropertyChange(Property.RakeMoney);
+            PropertyChange(Property.LeagueMoney);
         }
 
         # endregion
@@ -132,6 +140,13 @@ namespace ClubArcada.PokerTimer.Win
             set { }
         }
 
+        public Double MoneyPool { get { return PlayerList.Count * Tournament.TournamentDetail.BuyInPrize + ReBuyCount * Tournament.TournamentDetail.ReBuyPrize + AddOnCount * Tournament.TournamentDetail.AddOnPrize; } private set { } }
+        public Double LeagueMoney { get { return (MoneyPool * 0.10).GetRounded(); } private set { } }
+        public Double RakeMoney { get { return (MoneyPool * 0.15).GetRounded(); } private set { } }
+        public Double PrizePool { get { return (MoneyPool - (LeagueMoney + RakeMoney)).GetRounded(); } private set { } }
+
+        public Double Dotation { get { return Math.Abs(Tournament.TournamentDetail.GTD.HasValue && Tournament.TournamentDetail.GTD.Value > PrizePool ? PrizePool - Tournament.TournamentDetail.GTD.Value : 0); } }
+
         # endregion
 
         public MainWindow()
@@ -176,6 +191,13 @@ namespace ClubArcada.PokerTimer.Win
 
         private void MainWindow_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            if (e.Key == System.Windows.Input.Key.F1)
+            {
+                var settingsDlg = new Dialogs.TournamentSettingsDlg();
+                settingsDlg.ShowDialog();
+                RefreshValues();
+            }
+
             if (e.Key == System.Windows.Input.Key.F3)
             {
                 var playerDlg = new Dialogs.PlayerListDialog(PlayerList);
@@ -205,6 +227,60 @@ namespace ClubArcada.PokerTimer.Win
             RefreshValues();
         }
 
+        private void btnTournamentSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsDlg = new Dialogs.TournamentSettingsDlg();
+            settingsDlg.ShowDialog();
+            RefreshValues();
+        }
 
+        public Double[] GetPercents()
+        {
+            var enumlist = Enum.GetValues(typeof(ePositionSeqs)).Cast<ePositionSeqs>().Select(p => (int)p).ToList();
+            var selectedEnum = (ePositionSeqs)enumlist.Where(p => p <= PlayerList.Count).Max();
+            var positionEnum = (ePositions)Enum.Parse(typeof(ePositions), selectedEnum.ToString());
+            var percents = positionEnum.GetEnumDescription().Split('_').Select(p => Double.Parse(p)).ToArray();
+
+            return percents;
+        }
+
+        public int[] GetPlaces()
+        {
+            int[] paymentList = new int[20];
+            var percents = GetPercents();
+
+            paymentList[0] = (int)GetNumValViaPercents(PrizePool, percents[0]);
+            paymentList[1] = (int)GetNumValViaPercents(PrizePool, percents[1]);
+            paymentList[2] = (int)GetNumValViaPercents(PrizePool, percents[2]);
+            paymentList[3] = (int)GetNumValViaPercents(PrizePool, percents[3]);
+            paymentList[4] = (int)GetNumValViaPercents(PrizePool, percents[4]);
+            paymentList[5] = (int)GetNumValViaPercents(PrizePool, percents[5]);
+            paymentList[6] = (int)GetNumValViaPercents(PrizePool, percents[6]);
+            paymentList[7] = (int)GetNumValViaPercents(PrizePool, percents[7]);
+            paymentList[8] = (int)GetNumValViaPercents(PrizePool, percents[8]);
+            paymentList[9] = (int)GetNumValViaPercents(PrizePool, percents[9]);
+            paymentList[10] = (int)GetNumValViaPercents(PrizePool, percents[10]);
+            paymentList[11] = (int)GetNumValViaPercents(PrizePool, percents[11]);
+            paymentList[12] = (int)GetNumValViaPercents(PrizePool, percents[12]);
+            paymentList[13] = (int)GetNumValViaPercents(PrizePool, percents[13]);
+            paymentList[14] = (int)GetNumValViaPercents(PrizePool, percents[14]);
+            paymentList[15] = (int)GetNumValViaPercents(PrizePool, percents[15]);
+            paymentList[16] = (int)GetNumValViaPercents(PrizePool, percents[16]);
+            paymentList[17] = (int)GetNumValViaPercents(PrizePool, percents[17]);
+            paymentList[18] = (int)GetNumValViaPercents(PrizePool, percents[18]);
+            paymentList[19] = (int)GetNumValViaPercents(PrizePool, percents[19]);
+
+            return paymentList;
+        }
+
+        public static Double GetNumValViaPercents(Double origin, Double percent)
+        {
+            if (percent == 0 || origin == 0)
+                return 0;
+
+            var val = Math.Round(origin * ((Double)percent / (Double)100), 0);
+
+            return val - (val % 5);
+        }
     }
 }
