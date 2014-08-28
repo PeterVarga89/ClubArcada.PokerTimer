@@ -62,6 +62,7 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
 
             var dlg = new Dialogs.ReBuyDlg(result);
             dlg.ShowDialog();
+            this.Focus();
         }
 
         private void btnAddOnDown(object sender, RoutedEventArgs e)

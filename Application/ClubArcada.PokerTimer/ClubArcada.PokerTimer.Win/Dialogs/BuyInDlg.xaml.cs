@@ -1,5 +1,6 @@
 ﻿using ClubArcada.BusinessObjects;
 using ClubArcada.BusinessObjects.DataClasses;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -113,11 +114,43 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
         public int AddOnStack { get { return Tournament.TournamentDetail.AddOnStack; } }
         public int BonusStack { get { return Tournament.TournamentDetail.BonusStack; } }
 
-        public int BuyOverBuyInStack { get { return ((IsRebuy || IsDoubleChance) ? ReBuyStack : 0) + (IsTripleChance ? AddOnStack : 0); } }
-        public int BuyBonusStack { get { return (((BuyInStack + ((IsRebuy || IsDoubleChance) ? ReBuyStack : 0) +(IsTripleChance ? AddOnStack : 0)) / 100) * 20); } }
 
-        public int TotalStack { get { return BuyInStack + (IsTimeBonus ? BonusStack : 0) + (IsBuyBonus ? BuyBonusStack + BuyOverBuyInStack : 0); } set { } }
+        public Double StackRaw
+        {
+            get
+            {
+                return BuyInStack + ((IsRebuy || IsDoubleChance) ? ReBuyStack : 0) + (IsTripleChance ? AddOnStack : 0);
+            }
+        }
 
+        public Double StackBuyBonus
+        {
+            get
+            {
+                if (IsRebuy || IsDoubleChance)
+                {
+                    return StackRaw * 0.20;
+                }
+                else
+                    return 0;
+            }
+        }
+
+        public Double TotalStack
+        {
+            get
+            {
+                return StackRaw + StackBuyBonus + (IsTimeBonus ? BonusStack : 0);
+            }
+        }
+
+        public Double StackBonusTotal
+        {
+            get
+            {
+                return StackBuyBonus + (IsTimeBonus ? BonusStack : 0);
+            }
+        }
 
         private int RebuyPrize { get { return (IsRebuy || IsDoubleChance) ? Tournament.TournamentDetail.ReBuyPrize : 0; } }
         private int AddOnPrize { get { return IsTripleChance ? Tournament.TournamentDetail.AddOnPrize : 0; } }
@@ -145,7 +178,7 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
             TournamentResult.AddOnCount = IsTripleChance ? 1 : 0;
             TournamentResult.IsTimeBonus = IsTimeBonus;
 
-            TournamentResult.BonusStackTotal = BuyBonusStack;
+            TournamentResult.BonusStackTotal = (int)StackBonusTotal;
 
             this.Close();
         }

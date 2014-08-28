@@ -31,11 +31,15 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
         {
             NotSet = 0,
             Sum,
-            Stack
+            Stack,
+            BonusStack,
+            StackTotal
         }
 
         private void RefreshValues()
         {
+            PropertyChange(Property.BonusStack);
+            PropertyChange(Property.StackTotal);
             PropertyChange(Property.Stack);
             PropertyChange(Property.Sum);
         }
@@ -89,6 +93,34 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
                 RefreshValues();
             }
         }
+
+        private bool _isDoubleChance;
+        public bool IsDoubleChance
+        {
+            get
+            {
+                return _isDoubleChance;
+            }
+            set
+            {
+                _isDoubleChance = value;
+                RefreshValues();
+            }
+        }
+
+        private bool _isTripleChance;
+        public bool IsTripleChance
+        {
+            get
+            {
+                return _isTripleChance;
+            }
+            set
+            {
+                _isTripleChance = value;
+                RefreshValues();
+            }
+        }
         
         public int Sum
         {
@@ -103,15 +135,57 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
                 }
                 else if (IsDoubleChanceEnabled)
                 {
-                    return 999;
+                    return (IsDoubleChance ? rebuyPrize : 0) + (IsTripleChance ? addOnPrize : 0);
                 }
                 else
                 {
-                    return 0;
+                    throw new NotImplementedException("SUM is not able to calculate....");
                 }
             }
         }
 
+        public Double Stack
+        {
+            get
+            {
+                int rebuyStack = Tournament.TournamentDetail.ReBuyStack;
+                int addOnStack = Tournament.TournamentDetail.AddOnStack;
+
+                if (IsRebuyEnabled)
+                {
+                    return (IsSingleRebuy ? rebuyStack : 2 * rebuyStack) + (IsAddOn ? addOnStack : 0);
+                }
+                else if (IsDoubleChanceEnabled)
+                {
+                    return (IsDoubleChance ? rebuyStack : 0) + (IsTripleChance ? addOnStack : 0);
+                }
+                else
+                {
+                    throw new NotImplementedException("Stack is not able to calculate....");
+                }
+            }
+        }
+
+        public Double BonusStack
+        {
+            get
+            {
+                if (IsRebuyEnabled)
+                {
+                    return (IsDoubleRebuy || IsAddOn || (IsSingleRebuy && IsAddOn)) ? Stack * (0.20) : 0;
+                }
+                else if (IsDoubleChanceEnabled)
+                {
+                    return (IsDoubleChance || IsTripleChance) ? Stack * (0.20) : 0;
+                }
+                else
+                {
+                    throw new NotImplementedException("BonusStack is not able to calculate....");
+                }
+            }
+        }
+
+        public Double StackTotal { get { return Stack + BonusStack; } }
 
         public TournamentResult TournamentResult { get; set; }
 
@@ -151,12 +225,14 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
                 TournamentResult.ReBuyCount++;
             }
 
+            TournamentResult.BonusStackTotal = TournamentResult.BonusStackTotal + (int)BonusStack;
+
             this.Close();
         }
 
         private void closeBtn_click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

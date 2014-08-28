@@ -31,7 +31,10 @@ namespace ClubArcada.PokerTimer.Win
             InfoCtrlLeft04Type,
             InfoCtrlLeft04Value,
             AvgStack,
-            IsDark
+            IsDark,
+            ChipsTotal,
+            ReBuyCount,
+            AddOnCount
         }
 
         private void RefreshValues()
@@ -39,7 +42,9 @@ namespace ClubArcada.PokerTimer.Win
             PropertyChange(Property.InfoCtrlLeft04Type);
             PropertyChange(Property.InfoCtrlLeft04Value);
             PropertyChange(Property.AvgStack);
-            
+            PropertyChange(Property.ChipsTotal);
+            PropertyChange(Property.ReBuyCount);
+            PropertyChange(Property.AddOnCount);
         }
 
         # endregion
@@ -60,14 +65,14 @@ namespace ClubArcada.PokerTimer.Win
             }
         }
 
-        public ObservableCollection<TournamentResult> PlayerList {get; set;}
+        public ObservableCollection<TournamentResult> PlayerList { get; set; }
 
         private int _currentLevel;
-        public int CurrentLevel 
-        { 
-            get 
-            { 
-                return _currentLevel; 
+        public int CurrentLevel
+        {
+            get
+            {
+                return _currentLevel;
             }
             set
             {
@@ -82,13 +87,29 @@ namespace ClubArcada.PokerTimer.Win
         public int PlayerCountActive { get { return PlayerList.IsNotNull() ? PlayerList.Where(p => !p.DateDeleted.HasValue).Count() : 0; } private set { } }
         public int ReEntryCount { get { return PlayerList.IsNotNull() ? PlayerList.Where(p => p.DateReEntry.HasValue).Count() : 0; } private set { } }
 
-        public int ReBuyCount { get { return PlayerList.IsNotNull() ? PlayerList.Sum(p => p.ReBuyCount) : 0; } }
-        public int AddOnCount { get { return PlayerList.IsNotNull() ? PlayerList.Sum(p => p.AddOnCount) : 0; } }
-        public int TotalChips { get { return PlayerCount != 0 ? PlayerCount * Tournament.TournamentDetail.BuyInStack + ReBuyCount * Tournament.TournamentDetail.ReBuyStack + AddOnCount * Tournament.TournamentDetail.AddOnStack : 0; } private set { } }
+        public int ReBuyCount { get { return PlayerList.IsNotNull() ? PlayerList.Sum(p => p.ReBuyCount) : 0; } private set { } }
+        public int AddOnCount { get { return PlayerList.IsNotNull() ? PlayerList.Sum(p => p.AddOnCount) : 0; } private set { } }
+        public int ChipsTotal
+        {
+            get
+            {
+                if (PlayerCount == 0)
+                    return 0;
 
-        public int AvgStack { get { return PlayerCount != 0 ? (TotalChips + BonusStackCount) / PlayerCountActive : 0; } private set { } }
+                var buyIns = PlayerCount * Tournament.TournamentDetail.BuyInStack;
+                var reBuys = ReBuyCount * Tournament.TournamentDetail.ReBuyStack;
+                var addOns = AddOnCount * Tournament.TournamentDetail.AddOnStack;
+
+                return buyIns + reBuys + addOns + BonusStackCount;
+            }
+            private set
+            {
+            }
+        }
+
+        public int AvgStack { get { return PlayerCount != 0 ? ChipsTotal / PlayerCountActive : 0; } private set { } }
         public int TotalBank { get { return PlayerCount * Tournament.TournamentDetail.BuyInPrize; } private set { } }
-        
+
         public eInfoCtrlType InfoCtrlLeft04Type
         {
             get
@@ -118,7 +139,7 @@ namespace ClubArcada.PokerTimer.Win
             BindData();
             InitializeComponent();
             DataContext = this;
-            
+
 
             this.KeyUp += MainWindow_KeyUp;
             RefreshValues();
@@ -150,12 +171,12 @@ namespace ClubArcada.PokerTimer.Win
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            
+
         }
 
         private void MainWindow_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if(e.Key == System.Windows.Input.Key.F3)
+            if (e.Key == System.Windows.Input.Key.F3)
             {
                 var playerDlg = new Dialogs.PlayerListDialog(PlayerList);
                 playerDlg.ShowDialog();
@@ -184,6 +205,6 @@ namespace ClubArcada.PokerTimer.Win
             RefreshValues();
         }
 
-        
+
     }
 }

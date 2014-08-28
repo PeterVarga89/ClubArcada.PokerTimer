@@ -69,11 +69,15 @@
                     <!--Re entry count-->
                     <Controls:InfoCtrl Visibility="{Binding IsReEntryVisible}" Type="{Binding InfoCtrlLeft04Type, ElementName=MyMainWindow,Mode=TwoWay}" Message="{Binding InfoCtrlLeft04Value, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="3" />
 
+                    <!--Rebuy Count-->
+                    <Controls:InfoCtrl Type="ReBuyCount" Message="{Binding ReBuyCount, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="4" />
 
-                    <Border Margin="0,0,0,10" Grid.Row="4" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
-                    <Border Margin="0,0,0,10" Grid.Row="5" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
-                    <Border Margin="0,0,0,10" Grid.Row="6" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2" ></Border>
+                    <!--Addon Count-->
+                    <Controls:InfoCtrl Type="AddOnCount" Message="{Binding AddOnCount, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="5" />
 
+                    <!--AVG Stack-->
+                    <Controls:InfoCtrl Type="ChipsTotal" Message="{Binding ChipsTotal, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="6" />
+                    
                     <!--AVG Stack-->
                     <Controls:InfoCtrl Type="AvgStack" Message="{Binding AvgStack, ElementName=MyMainWindow, Mode=TwoWay}" Grid.Row="7" />
 
@@ -133,8 +137,9 @@
 
                     <Border Margin="0,0,0,10" Grid.Row="7" CornerRadius="10" Background="Black" BorderBrush="Silver" BorderThickness="2">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                            <Button Click="btnPlayList_Click" Width="150" Style="{StaticResource LightButtonStyle}" Margin="10,0,0,10" Content="Zoznam hráčov (F3)"></Button>
-                            <Button Click="btnAddPlayer_Click" Width="150" Style="{StaticResource LightButtonStyle}" Margin="10,0,0,10" Content="Pridať hráča (F4)"></Button>
+                            <Button Click="btnTournamentSettings_Click" Width="170" Style="{StaticResource LightButtonStyle}" Margin="10,0,0,10" Content="Nastavenie turnaja (F1)"></Button>
+                            <Button Click="btnPlayList_Click" Width="170" Style="{StaticResource LightButtonStyle}" Margin="10,0,0,10" Content="Zoznam hráčov (F3)"></Button>
+                            <Button Click="btnAddPlayer_Click" Width="170" Style="{StaticResource LightButtonStyle}" Margin="10,0,0,10" Content="Pridať hráča (F4)"></Button>
                         </StackPanel>
                     </Border>
 

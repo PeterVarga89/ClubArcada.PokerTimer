@@ -43,11 +43,11 @@
         <TextBox Grid.Column="1" IsEnabled="False" Text="{Binding TournamentResult.FullDislpayName, Mode=OneWay}" Grid.ColumnSpan="4" Margin="0,3,0,3" />
 
         <!--SINGLE REBUY-->
-        <TextBlock Grid.Column="0" IsEnabled="{Binding IsRebuy, Mode=OneWay}" Grid.Row="1" Text="Single rebuy" />
+        <TextBlock Grid.Column="0" IsEnabled="{Binding IsRebuy, Mode=OneWay}" Grid.Row="1" Text="1x rebuy" />
         <RadioButton IsChecked="{Binding IsSingleRebuy, Mode=TwoWay}" GroupName="rebuy" IsEnabled="{Binding IsRebuyEnabled, Mode=OneWay}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" />
 
         <!--DOUBLE REBUY-->
-        <TextBlock Grid.Column="0" IsEnabled="{Binding IsRebuy, Mode=OneWay}" Grid.Row="2" Text="Double rebuy" />
+        <TextBlock Grid.Column="0" IsEnabled="{Binding IsRebuy, Mode=OneWay}" Grid.Row="2" Text="2x rebuy" />
         <RadioButton IsChecked="{Binding IsDoubleRebuy, Mode=TwoWay}" GroupName="rebuy" IsEnabled="{Binding IsRebuyEnabled, Mode=OneWay}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" />
 
         <!--ADDON-->
@@ -56,16 +56,16 @@
 
         <!--DOUBLE CHANCE-->
         <TextBlock IsEnabled="{Binding IsDoubleChanceEnabled, Mode=OneWay}" Grid.Column="0" Grid.Row="3" Text="Double chance" />
-        <CheckBox  IsEnabled="{Binding IsDoubleChanceEnabled, Mode=OneWay}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" />
+        <CheckBox IsChecked="{Binding IsDoubleChance, Mode=TwoWay}"  IsEnabled="{Binding IsDoubleChanceEnabled, Mode=OneWay}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" />
 
         <!--TRIPLE CHANCE-->
         <TextBlock IsEnabled="{Binding IsTripleChanceEnabled, Mode=OneWay}" Grid.Column="3" Grid.Row="3" Text="Triple chance" />
-        <CheckBox IsEnabled="{Binding IsTripleChanceEnabled, Mode=OneWay}" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center" />
+        <CheckBox IsChecked="{Binding IsTripleChance, Mode=TwoWay}" IsEnabled="{Binding IsTripleChanceEnabled, Mode=OneWay}" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center" />
 
 
         <!--STACK-->
         <TextBlock Grid.Column="0" Grid.Row="5" Text="Stack" />
-        <TextBox   Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" IsEnabled="False"  Margin="0,3,0,3"  />
+        <TextBox Text="{Binding StackTotal, Mode=OneWay}" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" IsEnabled="False"  Margin="0,3,0,3"  />
 
         <!--SUM-->
         <TextBlock Grid.Column="3" Grid.Row="5" Text="Cena" />

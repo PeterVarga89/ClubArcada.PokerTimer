@@ -34,6 +34,8 @@ namespace ClubArcada.BusinessObjects
         [Description("AVG Stack")]
         AvgStack,
 
+        [Description("Chips Total")]
+        ChipsTotal,
 
     }
 
