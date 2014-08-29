@@ -50,6 +50,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PSDB.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DataClasses\Sits.cs" />
+    <Compile Include="DataClasses\Tables.cs" />
     <Compile Include="Data\StructureData.cs" />
     <Compile Include="Data\TournamentData.cs" />
     <Compile Include="Data\UserData.cs" />

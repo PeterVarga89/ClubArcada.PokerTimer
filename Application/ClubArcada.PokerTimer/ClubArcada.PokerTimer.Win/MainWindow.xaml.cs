@@ -41,7 +41,7 @@ namespace ClubArcada.PokerTimer.Win
             LeagueMoney
         }
 
-        private void RefreshValues()
+        public void RefreshValues()
         {
             PropertyChange(Property.InfoCtrlLeft04Type);
             PropertyChange(Property.InfoCtrlLeft04Value);
@@ -146,6 +146,12 @@ namespace ClubArcada.PokerTimer.Win
         public Double PrizePool { get { return (MoneyPool - (LeagueMoney + RakeMoney)).GetRounded(); } private set { } }
 
         public Double Dotation { get { return Math.Abs(Tournament.TournamentDetail.GTD.HasValue && Tournament.TournamentDetail.GTD.Value > PrizePool ? PrizePool - Tournament.TournamentDetail.GTD.Value : 0); } }
+
+        # endregion
+
+        # region Tables
+
+        public List<Tables> TableList { get; set; }
 
         # endregion
 

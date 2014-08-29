@@ -107,6 +107,7 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
                 lbxFoundUsers.ItemsSource = null;
                 txtSearch.Text = string.Empty;
                 txtSearch.Focus();
+                (Application.Current.MainWindow as MainWindow).RefreshValues();
             }
         }
 

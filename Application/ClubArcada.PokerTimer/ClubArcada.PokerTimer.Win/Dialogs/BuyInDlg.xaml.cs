@@ -4,6 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ClubArcada.PokerTimer.Win.Dialogs
 {
@@ -168,6 +170,37 @@ namespace ClubArcada.PokerTimer.Win.Dialogs
             Tournament.LoadTournamentDetails();
             InitializeComponent();
             DataContext = this;
+            BindTablesAndSits();
+        }
+
+        private void BindTablesAndSits()
+        {
+            MainWindow window = Application.Current.MainWindow as MainWindow;
+
+            if (window.TableList.IsNull() || window.TableList.Count == 0)
+            {
+                window.TableList = new List<Tables>();
+                window.TableList.Add(new Tables() { Number = 1 });
+            }
+
+            if (window.TableList.Last().GetAvaibleSitNumber() < 1)
+            {
+                window.TableList.Add(new Tables() { Number = window.TableList.Last().Number + 1 });
+            }
+            
+            txtTable.Text = window.TableList.Last().Number.ToString();
+
+            foreach (var t in window.TableList)
+            {
+                if (t.GetAvaibleSitNumber() > 0)
+                {
+                    var randomSit = t.GetRanomSit();
+
+                    t.Sits.Add(new Sits() { Number = randomSit });
+                    txtSit.Text = randomSit.ToString();
+                }
+            }
+            
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)

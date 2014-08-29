@@ -1,5 +1,6 @@
 ﻿using ClubArcada.BusinessObjects.DataClasses;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -233,6 +234,15 @@ namespace ClubArcada.BusinessObjects
         public static Double GetRounded(this Double val)
         {
             return Math.Round(val - (val % 5),0);
+        }
+
+        public static T GetRandomItem<T>(this List<T> list)
+        {
+            var rnd = new Random();
+
+            int r = rnd.Next(list.Count);
+
+            return list[r];
         }
     }
 }
